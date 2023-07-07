@@ -5,6 +5,7 @@ import {
   Form,
   redirect,
   useNavigation,
+  useSubmit,
 } from "react-router-dom";
 import { useEffect } from "react";
 import { getContacts, createContact } from "../contact";
@@ -12,6 +13,7 @@ import { getContacts, createContact } from "../contact";
 export default function root() {
   const { contacts, q } = useLoaderData();
   const navigation = useNavigation();
+  const submit = useSubmit();
   useEffect(() => {
     document.getElementById("q").value = q;
   }, [q]);
@@ -29,6 +31,9 @@ export default function root() {
               type="search"
               name="q"
               defaultValue={q}
+              onChange={(e) => {
+                submit(e.currentTarget.form);
+              }}
             />
             <div id="search-spinner" aria-hidden hidden={true} />
             <div className="sr-only" aria-live="polite"></div>
