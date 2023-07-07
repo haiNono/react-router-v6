@@ -2,7 +2,7 @@ import { Form, useLoaderData } from "react-router-dom";
 import { getContact } from "../contact";
 
 export default function Contact() {
-  const contact = useLoaderData();
+  const {contact} = useLoaderData();
 
   return (
     <div id="contact">
