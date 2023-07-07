@@ -38,6 +38,8 @@ const router = createBrowserRouter([
       {
         path: "/contacts/:contactId/destroy",
         action: destroyAction,
+        // 子路由内的错误元素优先级高于父路由的错误元素，这样可以让错误发生时用户又更多的可操作性，而不是只能点击刷新
+        errorElement: <div>oops! there was an error</div>
       },
     ],
   },
