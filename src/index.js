@@ -1,11 +1,15 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root, { loader as rootLoader, action as rootAction } from "./routes/root";
+import Root, {
+  loader as rootLoader,
+  action as rootAction,
+} from "./routes/root";
 import ErrorPage from "./errorpage";
-import Contact,{loader as contactLoader} from "./routes/contact";
+import Contact, { loader as contactLoader } from "./routes/contact";
 import EditContact from "./routes/edit";
 import { action as editAction } from "./routes/edit";
+import { action as destroyAction } from "./routes/destroy";
 import "./index.css";
 
 // 根路由
@@ -24,12 +28,17 @@ const router = createBrowserRouter([
         loader: contactLoader,
         element: <Contact />,
       },
-      { // 因为想要该页面出现在root中，所以作为root的子路由而不是上面一个路由的子路由
+      {
+        // 因为想要该页面出现在root中，所以作为root的子路由而不是上面一个路由的子路由
         path: "/contacts/:contactId/edit",
         element: <EditContact />,
         action: editAction,
-        loader: contactLoader
-      }
+        loader: contactLoader,
+      },
+      {
+        path: "/contacts/:contactId/destroy",
+        action: destroyAction,
+      },
     ],
   },
 ]);
