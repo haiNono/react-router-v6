@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Index from "./routes";
 import Root, {
   loader as rootLoader,
   action as rootAction,
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
     loader: rootLoader,
     action: rootAction, // 表单提交的action
     children: [
+      { 
+        index: true,
+        element: <Index/>
+      },
       {
         path: "/contacts/:contactId",
         loader: contactLoader,
