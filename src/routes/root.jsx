@@ -4,11 +4,14 @@ import {
   useLoaderData,
   Form,
   redirect,
+  useNavigation,
 } from "react-router-dom";
 import { getContacts, createContact } from "../contact";
 
 export default function root() {
   const { contacts } = useLoaderData();
+  const navigation = useNavigation();
+
   return (
     <>
       <div id="sidebar">
@@ -59,7 +62,11 @@ export default function root() {
           )}
         </nav>
       </div>
-      <div id="detail">
+      <div
+        id="detail"
+        // 使用useNavigation 管理全局pending UI
+        className={navigation.state === "loading" ? "loading" : ""}
+      >
         {/* 路由出口 */}
         <Outlet />
       </div>
